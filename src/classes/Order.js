@@ -1,5 +1,3 @@
-import TaxItem from "./TaxItem.js";
-
 export default class Order {
   constructor() {
     this.items = [];
@@ -20,8 +18,10 @@ export default class Order {
   getTaxes() {
     let total = 0;
     this.items.forEach((item) => {
-      const taxItem = new TaxItem(item.category, item.description, item.price);
-      total += taxItem.calculateTax(item.tax);
+      if (item?.tax >= 0) {
+        const tax = item.getTax();
+        total += item.calculateTax(tax);
+      }
     });
     return total;
   }

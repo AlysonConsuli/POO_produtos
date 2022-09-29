@@ -1,12 +1,11 @@
 import Item from "./Item.js";
 
 export default class TaxItem extends Item {
-  constructor(category, description, price) {
-    super(category, description, price);
+  constructor(description, price) {
+    super(description, price);
   }
 
   calculateTax(tax) {
-    const totalTax = this.price * tax;
-    return totalTax;
+    return this.price * tax;
   }
 }
